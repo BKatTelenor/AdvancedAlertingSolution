@@ -12,6 +12,7 @@ def ping():
 @app.route("/sms",methods = ['POST'])
 def sms_request():
     if request.is_json:
+        # TODO: change from hardcoded message content to request json content 
         content = "Hei Bjørn Kristian! Din Server er nede! du Suger!"
         message = client.messages.create(
                             body=content,
@@ -26,6 +27,7 @@ def sms_request():
 @app.route("/call",methods = ['POST'])
 def call_request():
     if request.is_json:
+        # TODO: change from hardcoded message content to request json content 
         content = "Hei Bjørn Kristian! Din Server er nede! du Suger!Hei Bjørn Kristian! Din Server er nede! du Suger!"
         call = client.calls.create(
                         twiml='<Response><Say>' + content + '</Say></Response>',
