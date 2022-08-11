@@ -2,6 +2,7 @@ from operator import truediv
 from flask import Flask, request, jsonify
 from twilio.rest import Client
 import os
+import json
 
 app = Flask(__name__)
 client = Client(os.getenv("AccountSid"), os.getenv("AuthToken"))
@@ -14,9 +15,8 @@ def ping():
 def sms_request():
     if request.is_json:
         data = request.get_json()
-        content = "blablabla: " + data['status'] + ". blablabla: " + data['alerts'][0]['annotations']['summary']
         message = client.messages.create(
-                            body=content,
+                            body=json.dumps(data),
                             from_=os.getenv("Sender"),
                             to=request.args.get('receiver')
                         )
@@ -29,13 +29,12 @@ def sms_request():
 def call_request():
     if request.is_json:
         data = request.get_json()
-        content = "blablabla: " + data['status'] + ". blablabla: " + data['alerts'][0]['annotations']['summary']
         call = client.calls.create(
-                        twiml='<Response><Say>' + content + '</Say></Response>',
+                        twiml='<Response><Say>' + json.dumps(data) + '</Say></Response>',
                         to=request.args.get('receiver'),
                         from_=os.getenv("Sender")
                     )
-        print(call.sid, "\n")
+        print(call.sid)
         return '<h1>Call</h1>'
     else:
         return
