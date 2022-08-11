@@ -7,6 +7,9 @@ import json
 app = Flask(__name__)
 client = Client(os.getenv("AccountSid"), os.getenv("AuthToken"))
 
+def create_app():
+    return app
+
 @app.route("/",methods = ['POST', 'GET'])
 def ping():
     return '<h1>Hello, World!</h1>'
@@ -50,6 +53,3 @@ def call_and_sms():
         return '<h1>Call and SMS</h1>'
     else:
         return
-
-if __name__=="__main__":
-    app.run()
