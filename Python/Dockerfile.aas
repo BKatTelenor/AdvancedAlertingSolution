@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 30042
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=30042"]
+CMD [ "waitress-serve", "--port=30042", "--call", "app:create_app" ]
