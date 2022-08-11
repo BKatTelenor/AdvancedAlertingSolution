@@ -1,0 +1,19 @@
+# syntax=docker/dockerfile:1
+
+FROM python:3.8-slim-buster
+
+ENV AccountSid=ACa1f522fa42da482000984b878f2796da
+ENV AuthToken=d80337c30a62261c90e07cf75336a17f
+ENV Sender=+15202800256
+
+WORKDIR /
+
+COPY requirements.txt requirements.txt
+
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+EXPOSE 30042
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=30042"]

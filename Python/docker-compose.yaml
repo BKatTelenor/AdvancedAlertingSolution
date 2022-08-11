@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  aas:
+    build:
+      context: .
+      dockerfile: Dockerfile.aas
+    ports:
+      - 30042:30042
+    networks:
+        - default
