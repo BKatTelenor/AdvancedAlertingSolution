@@ -17,6 +17,7 @@ def sms_request():
         data = request.get_json()
         message = client.messages.create(
                             body=json.dumps(data),
+                            # TODO: Alphanumeric SenderID to display system name.
                             from_=os.getenv("Sender"),
                             to=request.args.get('receiver')
                         )
