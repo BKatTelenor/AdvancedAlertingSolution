@@ -16,6 +16,7 @@ def sms_request():
     if request.is_json:
         data = request.get_json()
         message = client.messages.create(
+            # TODO: Better content in SMS. 
                             body=json.dumps(data),
                             # TODO: Alphanumeric SenderID to display system name.
                             from_=os.getenv("Sender"),
@@ -31,6 +32,7 @@ def call_request():
     if request.is_json:
         data = request.get_json()
         call = client.calls.create(
+            # TODO: Better content in call. 
                         twiml='<Response><Say>' + json.dumps(data) + '</Say></Response>',
                         to=request.args.get('receiver'),
                         from_=os.getenv("Sender")
