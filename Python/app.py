@@ -47,3 +47,6 @@ def call_and_sms():
         return '<h1>Call and SMS</h1>'
     else:
         return
+
+if __name__=="__main__":
+    app.run()
