@@ -9,3 +9,5 @@ services:
       - 30042:30042
     networks:
         - default
+    env_file:
+      - ./.env
