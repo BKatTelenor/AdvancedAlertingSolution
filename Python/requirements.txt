@@ -1,2 +1,4 @@
 Flask>=2.2.2
 twilio>=3.4.2
+python-dotenv
+waitress>=2.1.2
